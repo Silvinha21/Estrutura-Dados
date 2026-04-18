@@ -6,7 +6,7 @@ int valor;
 struct Celula *prox;
 };
 
-struct Celula * inserir(struct Celula *a){
+struct Celula * inserir(struct Celula *cabeca){
 struct Celula *nova, *aux, *aux2;
 
 nova = (struct Celula *)malloc(sizeof(struct Celula));
@@ -14,7 +14,7 @@ nova = (struct Celula *)malloc(sizeof(struct Celula));
 if(!nova){
 printf("Nao tem memoria disponivel!");
 
-return a;
+return cabeca;
 }
 
 printf("Comece a digitar...");
@@ -22,24 +22,30 @@ printf("Qual o valor? ");
 
 scanf("%d", &(nova->valor));
 
-nova->prox = NULL;
+nova->prox = 0;
 
-if(!a){
+if(!cabeca){
     printf("Lista vazia, inserindo o primeiro elemento...");
     return nova;
 } else {
-    aux = a;
-    while(aux->prox <= nova->valor){
-        aux = aux->prox;
+    aux = cabeca;
+    if (aux->valor > nova->valor){
+        nova->prox = aux;
+        return nova;
+    } else {
+        while (aux->prox && aux->prox->valor < nova->valor){
+            aux = aux->prox;
+        }
+        nova->prox = aux->prox;
+        aux->prox = nova;
     }
-    nova->prox = aux->prox;
-    aux->prox = nova;
 }
 
-return a;
+return cabeca;
 
 
-
+}
 
 int main(){
+
 }
