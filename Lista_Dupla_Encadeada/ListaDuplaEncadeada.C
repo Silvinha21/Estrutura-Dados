@@ -29,5 +29,5 @@ struct Celula * inserir(struct Celula *cabeca){
         aux = aux->prox;
     }
     nova->ant = aux;
-    aux->prox = nova;
+    aux->prox = nova; 
 }
