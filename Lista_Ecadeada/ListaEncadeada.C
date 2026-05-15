@@ -26,20 +26,25 @@ scanf("%d", &(nova->valor));
 nova->prox = 0;
 
 if(!cabeca){
+    nova->prox = nova
     printf("Lista vazia, inserindo o primeiro elemento...");
     return nova;
 } else {
     aux = cabeca;
     if (aux->valor > nova->valor){
         nova->prox = aux;
+        while(aux->prox != cabeca){
+            aux = aux->prox;
+        }
+        aux->prox = nova;
         return nova;
     } else {
         // se pá que esse bagui tem algum buraco que eu não vi, mas como não consigo executar vai ficar assim mesmo
-        while (aux->prox && aux->prox->valor < nova->valor){
+        while (aux->prox != cabeca && aux->prox->valor < nova->valor){
             aux = aux->prox;
         }
-        if(!aux->prox){
-            nova->prox = 0;
+        if(aux->prox == cabeca){
+            nova->prox = cabeca;
             aux->prox = nova;
         } else {
             nova->prox = aux->prox;
